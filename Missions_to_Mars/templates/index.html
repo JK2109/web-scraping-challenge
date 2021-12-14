@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+          <h1>Mission to Mars</h1>
+          <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+    </div>    
+    <div class="container">    
+        <div class="row">    
+            <div class="col-lg-12 col-sm-12">
+                <h2> Latest Mars News</h2>
+                <h4>{{mars_data.news_title}}</h4>
+                <p>{{mars_data.news_paragraph}}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <h2>Featured Mars Image</h2>
+                <a href="{{mars_data.featured_image_url}}"><img src="{{mars_data.featured_image_url}}" alt="featured_image.jpg" width = 100% class="center"/></a>
+
+            </div>
+            
+            <div class="col-lg-4 col-sm-12">
+                <h4>Mars Facts</h4>
+                
+                    <div class="table table-sm table-bordered table-striped">
+                        {{mars_data.mars_fact|safe }}
+                    </div>
+                
+            </div>        
+
+        </div>
+
+            
+            <div class="col-lg-12 col-sm-12">
+                <hr>
+                <h3>Mars Hemispheres</h2>
+                
+                <div class="row">
+                    {% for list in mars_data.hemisphere_image_urls %}
+                    <div class="col-lg-3">
+                        <div class="card" style="width: 14rem;">
+                            <a href="{{list.img_url}}"><img class="card-img-top" src="{{list.img_url}}" alt="img_url.jpg" width = 20% class="center"/></a>
+                            <div class="card-body">
+                                <strong><h4 class="card-title">{{ list.title }}</h4></strong>
+                            </div>  
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr>
+            </div>
+        
+    </div>
+
+
+   
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+</body>
+</html>
